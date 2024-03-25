@@ -1,0 +1,25 @@
+{
+  "name": "vue_template",
+  "version": "1.0.0",
+  "description": "Project using Vue3 and Mongodb Express Server",
+  "main": "index.js",
+  "scripts": {
+    "start:server": "nodemon server.js --ignore '../client/'",
+    "start:client": "npm run dev --prefix '../client/'",
+    "dev": "npm run start:server",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^1.6.8",
+    "body-parser": "^1.20.2",
+    "cors": "^2.8.5",
+    "express": "^4.19.1",
+    "mongodb": "^6.5.0",
+    "mongoose": "^8.2.3"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.0"
+  }
+}
