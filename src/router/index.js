@@ -3,6 +3,7 @@ import DashboardView from '../views/DashboardView.vue'
 import RegisterView from '../views/account/Register.vue'
 import LoginView from '../views/account/Login.vue'
 import TodoView from '../components/todo/Todo.vue'
+import NotFound from '../components/NotFound.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -26,6 +27,11 @@ const router = createRouter({
       path: '/todo',
       name: 'todo',
       component: TodoView
+    },
+    {
+      path: '/:pathMatch(.*)*',
+      name: 'NotFound',
+      component: NotFound
     }
   ]
 })
