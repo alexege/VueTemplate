@@ -7,15 +7,16 @@ module.exports = (app) => {
         );
         next();
     });
-    // app.get("/api/todo/allTodos", controller.findAllTodos);
+
+    app.get("/api/todos/all", controller.fetchTodos);
     
-    // app.get("/api/todo/:id", controller.findById);
+    app.post("/api/todos/new", controller.addTodo);
+        
+    app.get("/api/todos/:id", controller.fetchTodo);
     
-    app.post("/api/todo/addTodo", controller.addTodo);
+    app.put("/api/todos/:id", controller.updateTodo);
     
-    // app.patch("/api/todo/update/:id", controller.updateTodo);
+    app.delete("/api/todos/:id", controller.deleteTodo);
     
-    // app.delete("/api/todo", controller.deleteTodos);
-    
-    // app.delete("/api/todo/:id", controller.deleteTodo);
+    app.delete("/api/todos", controller.deleteTodos);
 }

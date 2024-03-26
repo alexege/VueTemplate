@@ -5,6 +5,7 @@ const API_URL = 'http://localhost:8080/api'
 
 export const useTodoStore = defineStore('todo', {
   state: () => ({
+    todo: {},
     todos: []
   }),
   getters: {
@@ -13,15 +14,40 @@ export const useTodoStore = defineStore('todo', {
     }
   },
   actions: {
-    
-    getTodos() {
-      //Todo
-      return
+    async addTodo(todo) {
+      await axios.post(`${API_URL}/todos/new`, todo)
+      await this.fetchTodos()
     },
-
-    async addTodo(item) {
-      const todoItem = await axios.post(`${API_URL}/todo/addTodo`, item)
-      this.todos.push(todoItem)
+    
+    async fetchTodos() {
+      const response = await axios.get(`${API_URL}/todos/all`)
+      this.todos = response.data
+    },
+    
+    async fetchTodo(id) {
+      const response = await axios.get(`${API_URL}/todos/${id}`)
+      this.todo = response.data
+    },
+    
+    async updateTodo(todo) {
+      await axios.patch(`${API_URL}/todos/${todo._id}`, todo)
+      await this.fetchTodos()
+    },
+    
+    async deleteTodo(id) {
+      await axios.delete(`${API_URL}/todos/delete/${id}`)
+      this.todos = this.todos.filter((todo) => todo._id !== id)
+      if(this.todo?._id === id) {
+        this.todo = null;
+      }
+    },
+    
+    async deleteTodos() {
+      // await axios.delete(`${API_URL}/delete/${id}`)
+      // this.todos = this.todos.filter((todo) => todo._id !== id)
+      // if(this.todo?._id === id) {
+      //   this.todo = null;
+      // }
     }
   }
 })

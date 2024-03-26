@@ -21,10 +21,7 @@ const db = require('./models')
 const dbConfig = require('./config/db.config')
 
 //Mongodb Connection String
-db.mongoose.connect(`mongodb://${dbConfig.HOST}:${dbConfig.PORT}/${dbConfig.DB}`, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-})
+db.mongoose.connect(`mongodb://${dbConfig.HOST}:${dbConfig.PORT}/${dbConfig.DB}`)
 .then(() => {
     console.log("Successfully connected to Mongodb!")
 
@@ -44,7 +41,7 @@ app.get("/", (req, res) => {
 require('./routes/api/todo.routes')(app);
 
 //Custom port for HEROKU compatibility
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 8080;
 
 app.listen(port, () => console.log(`Server started on port: ${port}`));
 
